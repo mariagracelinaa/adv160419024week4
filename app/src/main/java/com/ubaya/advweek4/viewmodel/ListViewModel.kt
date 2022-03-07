@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import com.ubaya.advweek4.model.Student
 
 //jembatan model student dengan view(fragmentlist)
-//add extend BiewModel
+//add extend viewModel
 class ListViewModel:ViewModel() {
     //LD-> live data
     //tampung data yang ada (list of student)

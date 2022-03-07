@@ -33,7 +33,7 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView2">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/txtID"
+            android:id="@+id/txtIDFragment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -53,7 +53,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/txtName"
+            android:id="@+id/txtNameFragment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -73,7 +73,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout2">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/txtDob"
+            android:id="@+id/txtDobFragment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="date" />
@@ -94,7 +94,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout3">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/txtPhone"
+            android:id="@+id/txtPhoneFragment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="phone" />
