@@ -37,17 +37,15 @@ class StudentDetailFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(DetailViewModel::class.java)
         viewModel.fetch()
 
-        txtIDFragment.setText(viewModel.studentsLD.value?.id)
-        txtNameFragment.setText(viewModel.studentsLD.value?.name)
-        txtDobFragment.setText(viewModel.studentsLD.value?.dob)
-        txtPhoneFragment.setText(viewModel.studentsLD.value?.phone)
-
         observeViewModel()
     }
 
     private fun observeViewModel() {
-//        viewModel.studentsLD.observe(viewLifecycleOwner){
-//            studentDetailAdapter.updateStudentList(it)
-//        }
+        viewModel.studentsLD.observe(viewLifecycleOwner){
+            txtIDFragment.setText(it.id)
+            txtNameFragment.setText(it.name)
+            txtDobFragment.setText(it.dob)
+            txtPhoneFragment.setText(it.phone)
+        }
     }
 }
