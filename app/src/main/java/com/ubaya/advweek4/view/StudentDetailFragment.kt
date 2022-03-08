@@ -37,19 +37,10 @@ class StudentDetailFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(DetailViewModel::class.java)
         viewModel.fetch()
 
-        //recycle view
-//        recView.layoutManager = LinearLayoutManager(context)
-//        recView.adapter = studentListAdapter
-        //val studentList:ArrayList<Student>
-        //val student = studentList[0]
-
-//        val student = studentList[0]
-//        with(s){
-//            txtIDFragment.setText("Halo")
-//            txtNameFragment.setText(studentList[0].name.toString())
-//            txtDobFragment.setText(studentList[0].dob.toString())
-//            txtPhoneFragment.setText(studentList[0].phone.toString())
-//        }
+        txtIDFragment.setText(viewModel.studentsLD.value?.id)
+        txtNameFragment.setText(viewModel.studentsLD.value?.name)
+        txtDobFragment.setText(viewModel.studentsLD.value?.dob)
+        txtPhoneFragment.setText(viewModel.studentsLD.value?.phone)
 
         observeViewModel()
     }
