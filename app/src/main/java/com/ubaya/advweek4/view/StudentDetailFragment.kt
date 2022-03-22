@@ -17,6 +17,7 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.ubaya.advweek4.R
 import com.ubaya.advweek4.model.Student
+import com.ubaya.advweek4.util.loadImage
 import com.ubaya.advweek4.viewmodel.DetailViewModel
 import com.ubaya.advweek4.viewmodel.ListViewModel
 import kotlinx.android.synthetic.main.fragment_student_detail.*
@@ -73,6 +74,7 @@ class StudentDetailFragment : Fragment() {
         viewModel.studentsLD.observe(viewLifecycleOwner){
             val student = viewModel.studentsLD.value
             student?.let {
+                imgDetail.loadImage(it.photoUrl, progressLoadingStudentPhotoDetail)
                 txtIDFragment.setText(it.id)
                 txtNameFragment.setText(it.name)
                 txtDobFragment.setText(it.dob)
