@@ -119,4 +119,13 @@
         app:layout_constraintEnd_toEndOf="@+id/imgDetail"
         app:layout_constraintStart_toStartOf="@+id/imgDetail"
         app:layout_constraintTop_toTopOf="@+id/imgDetail" />
+
+    <Button
+        android:id="@+id/btnNotification"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="create notification"
+        app:layout_constraintStart_toStartOf="@+id/textInputLayout4"
+        app:layout_constraintTop_toTopOf="@+id/btnUpdate" />
 </androidx.constraintlayout.widget.ConstraintLayout>
