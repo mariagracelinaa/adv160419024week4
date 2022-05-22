@@ -17,6 +17,7 @@ import com.android.volley.toolbox.Volley
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.ubaya.advweek4.R
+import com.ubaya.advweek4.databinding.FragmentStudentDetailBinding
 import com.ubaya.advweek4.model.Student
 import com.ubaya.advweek4.util.loadImage
 import com.ubaya.advweek4.viewmodel.DetailViewModel
@@ -35,53 +36,53 @@ import kotlinx.android.synthetic.main.student_list_item.view.*
 import java.util.*
 import java.util.concurrent.TimeUnit
 
-class StudentDetailFragment : Fragment() {
+class StudentDetailFragment : Fragment() , ShowNotificationClickListener{
     private lateinit var viewModel: DetailViewModel
+    private lateinit var dataBinding: FragmentStudentDetailBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_student_detail, container, false)
+        dataBinding = FragmentStudentDetailBinding.inflate(inflater, container, false)
+        return dataBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        arguments.let {
-            val stdID = StudentDetailFragmentArgs.fromBundle(requireArguments()).studentID
-            viewModel = ViewModelProvider(this).get(DetailViewModel::class.java)
-            viewModel.fetch(stdID)
-        }
+        viewModel = ViewModelProvider(this).get(DetailViewModel::class.java)
+        val stdID = StudentDetailFragmentArgs.fromBundle(requireArguments()).studentID
+        viewModel.fetch(stdID)
+
+        dataBinding.notificationListener = this
         observeViewModel()
     }
 
     private fun observeViewModel() {
         viewModel.studentsLD.observe(viewLifecycleOwner){
+            dataBinding.student = it
+
+        }
+    }
+
+    override fun onShowNotificationClick(view: View) {
+        viewModel.studentsLD.observe(viewLifecycleOwner){
             val student = it
             student?.let { student ->
-                imgDetail.loadImage(it.photoUrl, progressLoadingStudentPhotoDetail)
-                txtIDFragment.setText(it.id)
-                txtNameFragment.setText(it.name)
-                txtDobFragment.setText(it.dob)
-                txtPhoneFragment.setText(it.phone)
-
-                btnNotification.setOnClickListener{
-                    Observable.timer(5, TimeUnit.SECONDS)
-                        .subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe {
-                            Log.d("mynotif", "Five Seconds")
-                            Log.d("Message", student.name.toString())
-                            student.name?.let { studentName ->
-                                MainActivity.showNotification(
-                                    studentName,
-                                    "A new notification created",
-                                    R.drawable.ic_baseline_person_24
-                                )
-
-                            }
+                Observable.timer(5, TimeUnit.SECONDS)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe {
+                        Log.d("mynotif", "Five Seconds")
+                        Log.d("Message", student.name.toString())
+                        student.name?.let { studentName ->
+                            MainActivity.showNotification(
+                                studentName,
+                                "A new notification created",
+                                R.drawable.ic_baseline_person_24
+                            )
                         }
-                }
+                    }
             }
         }
     }
