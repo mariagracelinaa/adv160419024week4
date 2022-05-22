@@ -10,6 +10,9 @@
         <variable
             name="notificationListener"
             type="com.ubaya.advweek4.view.ShowNotificationClickListener" />
+        <variable
+            name="updateListener"
+            type="com.ubaya.advweek4.view.UpdateClickListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -20,7 +23,6 @@
 
         <ImageView
             android:id="@+id/imgDetail"
-
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
@@ -28,6 +30,8 @@
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            imageUrl="@{student.photoUrl}"
+            progressBar="@{progressLoadingStudentPhotoDetail}"
             tools:src="@tools:sample/avatars" />
 
         <com.google.android.material.textfield.TextInputLayout
@@ -123,6 +127,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
+            android:onClick="@{updateListener::onUpdateClick}"
             android:text="update"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textInputLayout4" />

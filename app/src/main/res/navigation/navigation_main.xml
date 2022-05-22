@@ -8,8 +8,8 @@
     <fragment
         android:id="@+id/studentListFragment"
         android:name="com.ubaya.advweek4.view.StudentListFragment"
-        android:label="fragment_student_list"
-        tools:layout="@layout/fragment_student_list" >
+        android:label="Student List"
+        tools:layout="@layout/fragment_student_list">
         <action
             android:id="@+id/actionStudentDetail"
             app:destination="@id/studentDetailFragment" />

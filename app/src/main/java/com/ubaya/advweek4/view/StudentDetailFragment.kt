@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.text.htmlEncode
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
@@ -36,7 +37,7 @@ import kotlinx.android.synthetic.main.student_list_item.view.*
 import java.util.*
 import java.util.concurrent.TimeUnit
 
-class StudentDetailFragment : Fragment() , ShowNotificationClickListener{
+class StudentDetailFragment : Fragment() , ShowNotificationClickListener, UpdateClickListener{
     private lateinit var viewModel: DetailViewModel
     private lateinit var dataBinding: FragmentStudentDetailBinding
 
@@ -55,13 +56,13 @@ class StudentDetailFragment : Fragment() , ShowNotificationClickListener{
         viewModel.fetch(stdID)
 
         dataBinding.notificationListener = this
+        dataBinding.updateListener = this
         observeViewModel()
     }
 
     private fun observeViewModel() {
         viewModel.studentsLD.observe(viewLifecycleOwner){
             dataBinding.student = it
-
         }
     }
 
@@ -85,5 +86,11 @@ class StudentDetailFragment : Fragment() , ShowNotificationClickListener{
                     }
             }
         }
+    }
+
+    override fun onUpdateClick(view: View) {
+        Toast.makeText(view.context, "Data Updated", Toast.LENGTH_SHORT).show()
+//        val action = StudentListFragmentDirections.actionStudentDetail(view.tag.toString())
+        Navigation.findNavController(view).popBackStack()
     }
 }

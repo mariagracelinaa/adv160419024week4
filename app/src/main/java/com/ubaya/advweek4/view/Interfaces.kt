@@ -9,3 +9,7 @@ interface StudentDetailClickListener {
 interface ShowNotificationClickListener {
     fun onShowNotificationClick(view: View)
 }
+
+interface UpdateClickListener {
+    fun onUpdateClick(view: View)
+}
